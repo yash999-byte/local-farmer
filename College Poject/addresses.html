@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Addresses - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        /* Custom radio button styling */
+        .custom-radio:checked + div {
+            border-color: #15803d; /* green-700 */
+        }
+        .custom-radio:checked + div .radio-inner {
+            background-color: #15803d;
+            border-color: #15803d;
+        }
+        .radio-inner {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db; /* gray-300 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .radio-inner::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center bg-white sticky top-0 z-10 shadow-sm">
+        <a href="profile.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800 -ml-2">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800 ml-2">My Addresses</h1>
+    </div>
+
+    <!-- Saved Addresses List -->
+    <div class="px-5 mt-5 space-y-4">
+        
+        <!-- Address 1: Home (Default) -->
+        <label class="cursor-pointer block relative">
+            <input type="radio" name="address" class="custom-radio absolute opacity-0 w-0 h-0" checked>
+            <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-gray-100 hover:shadow-md transition">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="radio-inner"></div>
+                        <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded">Home</span>
+                        <span class="text-[10px] font-semibold text-gray-400 border border-gray-200 px-2 py-0.5 rounded">Default</span>
+                    </div>
+                    <div class="flex space-x-3 text-gray-400">
+                        <a href="edit-address.html" class="hover:text-blue-500 transition"><i class="fa-solid fa-pen text-sm"></i></a>
+                        <button class="hover:text-red-500 transition"><i class="fa-solid fa-trash text-sm"></i></button>
+                    </div>
+                </div>
+                <div class="ml-6 mt-1">
+                    <h3 class="font-bold text-gray-800 text-sm">Rohan Kumar</h3>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+                        A-402, Green Valley Apartments, <br>
+                        Shivaji Nagar, Pune, <br>
+                        Maharashtra - 411005
+                    </p>
+                    <p class="text-xs font-semibold text-gray-700 mt-2">+91 98765 43210</p>
+                </div>
+            </div>
+        </label>
+
+        <!-- Address 2: Work -->
+        <label class="cursor-pointer block relative">
+            <input type="radio" name="address" class="custom-radio absolute opacity-0 w-0 h-0">
+            <div class="bg-white rounded-2xl p-4 shadow-sm border-2 border-gray-100 hover:shadow-md transition">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="radio-inner"></div>
+                        <span class="bg-gray-100 text-gray-700 text-[10px] font-bold px-2 py-1 rounded">Work</span>
+                    </div>
+                    <div class="flex space-x-3 text-gray-400">
+                        <a href="edit-address.html" class="hover:text-blue-500 transition"><i class="fa-solid fa-pen text-sm"></i></a>
+                        <button class="hover:text-red-500 transition"><i class="fa-solid fa-trash text-sm"></i></button>
+                    </div>
+                </div>
+                <div class="ml-6 mt-1">
+                    <h3 class="font-bold text-gray-800 text-sm">Rohan Kumar</h3>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+                        Tech Park Phase 1, Building C, 3rd Floor, <br>
+                        Hinjewadi, Pune, <br>
+                        Maharashtra - 411057
+                    </p>
+                    <p class="text-xs font-semibold text-gray-700 mt-2">+91 98765 43210</p>
+                </div>
+            </div>
+        </label>
+
+    </div>
+
+    <!-- Fixed Add New Address Button -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white px-5 py-4 border-t border-gray-100">
+        <a href="edit-address.html" class="w-full bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-md hover:bg-green-800 transition flex items-center justify-center">
+    <i class="fa-solid fa-plus mr-2"></i> Add New Address
+</a>
+    </div>
+
+</div>
+
+</body>
+</html>

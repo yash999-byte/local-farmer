@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-32">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center bg-white sticky top-0 z-10 border-b border-gray-100">
+        <a href="index.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800 -ml-2">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800 ml-2">Cart</h1>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="px-5 mt-4 space-y-4">
+        
+        <!-- Cart Item 1: Tomato -->
+        <div class="bg-white rounded-2xl p-3 flex items-center shadow-sm border border-gray-100">
+            <div class="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center text-3xl">🍅</div>
+            <div class="ml-4 flex-grow">
+                <h3 class="font-bold text-gray-800 text-sm">Tomato</h3>
+                <p class="text-xs text-gray-500 mb-1">1 kg</p>
+                <p class="font-bold text-green-700 text-sm">₹20</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-50 rounded-lg px-1.5 py-1 border border-gray-200">
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">−</button>
+                <span class="text-xs font-bold text-gray-800 w-4 text-center">1</span>
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">+</button>
+            </div>
+        </div>
+
+        <!-- Cart Item 2: Potato -->
+        <div class="bg-white rounded-2xl p-3 flex items-center shadow-sm border border-gray-100">
+            <div class="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center text-3xl">🥔</div>
+            <div class="ml-4 flex-grow">
+                <h3 class="font-bold text-gray-800 text-sm">Potato</h3>
+                <p class="text-xs text-gray-500 mb-1">2 kg</p>
+                <p class="font-bold text-green-700 text-sm">₹36</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-50 rounded-lg px-1.5 py-1 border border-gray-200">
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">−</button>
+                <span class="text-xs font-bold text-gray-800 w-4 text-center">2</span>
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">+</button>
+            </div>
+        </div>
+
+        <!-- Cart Item 3: Onion -->
+        <div class="bg-white rounded-2xl p-3 flex items-center shadow-sm border border-gray-100">
+            <div class="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center text-3xl">🧅</div>
+            <div class="ml-4 flex-grow">
+                <h3 class="font-bold text-gray-800 text-sm">Onion</h3>
+                <p class="text-xs text-gray-500 mb-1">1 kg</p>
+                <p class="font-bold text-green-700 text-sm">₹25</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-gray-50 rounded-lg px-1.5 py-1 border border-gray-200">
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">−</button>
+                <span class="text-xs font-bold text-gray-800 w-4 text-center">1</span>
+                <button class="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-green-700 font-medium">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Footer (Positioned above Bottom Nav) -->
+    <div class="fixed bottom-[60px] w-full max-w-[414px] bg-white px-5 py-4 border-t border-gray-200 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div>
+            <p class="text-xs text-gray-500 font-medium">Total Amount</p>
+            <p class="text-xl font-bold text-gray-800">₹81</p>
+        </div>
+        <button class="bg-green-700 text-white font-bold text-sm py-3 px-8 rounded-xl shadow-md hover:bg-green-800 transition">
+            Checkout
+        </button>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+     
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5 z-20">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+       <a href="categories.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+    <i class="fa-solid fa-border-all mb-1"></i>
+    <span class="text-[10px] font-semibold">Categories</span>
+</a>
+        <div class="flex flex-col items-center text-green-700 relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </div>
+       <a href="orders.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+    <i class="fa-regular fa-user mb-1"></i>
+    <span class="text-[10px] font-semibold">Profile</span>
+</a>
+    </div>
+
+</div>
+
+</body>
+</html>

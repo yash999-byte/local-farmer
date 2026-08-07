@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrot Details - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex justify-between items-center bg-white sticky top-0 z-10">
+        <a href="index.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800">Product Details</h1>
+        <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800">
+            <i class="fa-regular fa-heart text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Scrollable Content Area -->
+    <div class="flex-grow overflow-y-auto pb-32">
+        <!-- Product Image Placeholder -->
+        <div class="px-5 mb-4">
+            <div class="w-full bg-orange-50 rounded-2xl h-64 flex items-center justify-center text-9xl">
+                🥕
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="px-5">
+            <h2 class="text-2xl font-bold text-gray-800">Fresh Carrot</h2>
+            <div class="mt-1 mb-3">
+                <span class="text-xl font-bold text-green-700">₹35 <span class="text-sm text-gray-500 font-normal">/ kg</span></span>
+            </div>
+
+            <!-- Rating & Reviews -->
+            <div class="flex items-center space-x-1 mb-4">
+                <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                <span class="text-sm font-bold text-gray-700">4.6</span>
+                <span class="text-sm text-gray-400">(110 reviews)</span>
+            </div>
+
+            <!-- Farmer & Location Info -->
+            <div class="bg-gray-50 rounded-xl p-4 mb-5 border border-gray-100">
+                <div class="flex items-start mb-2">
+                    <i class="fa-regular fa-user text-green-600 mt-1 mr-3"></i>
+                    <div>
+                        <p class="text-xs text-gray-500">Farmer</p>
+                        <p class="text-sm font-semibold text-gray-800">Priya Desai</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <i class="fa-solid fa-location-dot text-green-600 mt-1 mr-3"></i>
+                    <div>
+                        <p class="text-xs text-gray-500">Location</p>
+                        <p class="text-sm font-semibold text-gray-800">Pune, Maharashtra</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-5">
+                <h3 class="text-base font-bold text-gray-800 mb-2">Product Details</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">
+                    Crunchy, sweet, and locally grown orange carrots. Rich in Vitamin A and perfect for salads, cooking, or juicing.
+                </p>
+            </div>
+
+            <!-- Quantity Selector -->
+            <div class="flex items-center justify-between mb-2 border-t border-gray-100 pt-5">
+                <span class="text-base font-semibold text-gray-800">Quantity</span>
+                <div class="flex items-center space-x-4 bg-gray-50 rounded-lg px-2 py-1 border border-gray-200">
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-green-700 text-xl font-medium">−</button>
+                    <span class="text-sm font-bold text-gray-800 w-8 text-center">1 kg</span>
+                    <button class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-green-700 text-xl font-medium">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Bottom Action Buttons -->
+    <div class="absolute bottom-0 w-full bg-white px-5 py-4 border-t border-gray-100">
+        <a href="cart.html" class="block text-center w-full bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-md hover:bg-green-800 transition mb-3">
+            Add to Cart
+        </a>
+        <button class="w-full bg-white text-green-700 font-bold text-sm py-3.5 rounded-xl border-2 border-green-700 hover:bg-green-50 transition">
+            Buy Now
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>

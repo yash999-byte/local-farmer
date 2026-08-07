@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Local Farmer App</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        /* Custom styling for the curved header */
+        .header-curve {
+            border-bottom-left-radius: 40%;
+            border-bottom-right-radius: 40%;
+        }
+        /* Role selector active states */
+        .role-radio:checked + div {
+            border-color: #15803d; /* green-700 */
+            background-color: #f0fdf4; /* green-50 */
+        }
+        .role-radio:checked + div .check-icon {
+            color: #15803d;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container flex flex-col">
+    
+    <!-- Top Illustration Area -->
+    <div class="bg-green-700 h-56 header-curve flex flex-col items-center justify-end pb-8 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-20" style="background-image: radial-gradient(circle, white 2px, transparent 2px); background-size: 20px 20px;"></div>
+        
+        <!-- Placeholder for the tractor illustration from mockup -->
+        <div class="relative z-10 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-green-600">
+            <span class="text-5xl">🚜</span>
+        </div>
+    </div>
+
+    <!-- Login Form Area -->
+    <div class="px-6 mt-6 flex-grow flex flex-col">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-1">Welcome Back!</h1>
+            <p class="text-sm text-gray-500">Login to continue</p>
+        </div>
+
+        <!-- Role Selector -->
+        <div class="mb-6">
+            <p class="text-xs font-bold text-gray-800 mb-3 text-center">Select your role</p>
+            <div class="flex space-x-4">
+                <label class="cursor-pointer flex-1 relative">
+                    <input type="radio" name="user_role" class="role-radio absolute opacity-0 w-0 h-0" checked>
+                    <div class="border-2 border-gray-200 bg-white py-3 rounded-xl flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-basket-shopping mr-2 text-gray-500"></i>
+                        <span class="font-bold text-gray-700 text-sm">Buyer</span>
+                        <i class="fa-solid fa-circle-check absolute top-2 right-2 text-[10px] opacity-0 transition-opacity check-icon"></i>
+                    </div>
+                </label>
+                
+                <label class="cursor-pointer flex-1 relative">
+                    <input type="radio" name="user_role" class="role-radio absolute opacity-0 w-0 h-0">
+                    <div class="border-2 border-gray-200 bg-white py-3 rounded-xl flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-tractor mr-2 text-gray-500"></i>
+                        <span class="font-bold text-gray-700 text-sm">Farmer</span>
+                        <i class="fa-solid fa-circle-check absolute top-2 right-2 text-[10px] opacity-0 transition-opacity check-icon"></i>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- ACTUAL FORM WITH VALIDATION -->
+        <!-- Removed the fake redirect and added id="login-form" -->
+        <form id="login-form" class="flex flex-col flex-grow">
+            
+            <!-- Inputs -->
+            <div class="space-y-4">
+                <!-- Phone Number -->
+                <div class="relative">
+                    <i class="fa-solid fa-phone absolute left-4 top-[14px] text-gray-400"></i>
+                    <!-- Added id="login-phone" -->
+                    <input type="tel" 
+                           id="login-phone"
+                           placeholder="Phone Number" 
+                           maxlength="10" 
+                           required 
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                           class="w-full bg-gray-50 border border-gray-200 py-3 pl-11 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition text-gray-800 font-medium">
+                </div>
+
+                <!-- Password -->
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-4 top-[14px] text-gray-400"></i>
+                    <!-- Added id="login-password" -->
+                    <input type="password" 
+                           id="login-password"
+                           placeholder="Password" 
+                           required 
+                           class="w-full bg-gray-50 border border-gray-200 py-3 pl-11 pr-10 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition text-gray-800 font-medium">
+                    <button type="button" class="absolute right-4 top-[14px] text-gray-400 hover:text-green-700 transition">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="text-right mt-3 mb-8">
+                <a href="forgot-password.html" class="text-xs font-semibold text-green-700 hover:underline">Forgot Password?</a>
+            </div>
+
+            <!-- Submit Button (Triggers the 'required' check) -->
+            <!-- Added id="login-btn" -->
+            <button type="submit" id="login-btn" class="block text-center w-full bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg hover:bg-green-800 transition mb-10">
+                Login
+            </button>
+
+            <!-- Sign Up Link -->
+            <div class="text-center pb-8 mt-auto">
+                <p class="text-xs text-gray-500 font-medium">Don't have an account? <a href="create-account.html" class="text-green-700 font-bold hover:underline">Sign Up</a></p>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+<!-- Backend Connection Script -->
+<script>
+    document.getElementById('login-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); 
+        
+        // Live Render Backend URL
+        const BACKEND_URL = 'https://local-farmer-backend-zpy6.onrender.com';
+
+        const phone = document.getElementById('login-phone').value;
+        const password = document.getElementById('login-password').value;
+
+        // Button loading state
+        const loginBtn = document.getElementById('login-btn');
+        const originalBtnText = loginBtn.innerText;
+        loginBtn.innerText = 'Verifying...';
+        loginBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                // SUCCESS! Save user details to browser storage as proof they logged in
+                localStorage.setItem('localFarmerName', data.user.name);
+                localStorage.setItem('localFarmerPhone', data.user.phone);
+                localStorage.setItem('localFarmerRole', data.user.role);
+                localStorage.setItem('isLoggedIn', 'true'); // This is your security token
+                
+                alert('Login Successful!');
+                // Redirects user to the main page
+                window.location.href = 'index.html'; 
+            } else {
+                alert('Login failed: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Could not connect to the server. Please wait a moment and try again.');
+        } finally {
+            loginBtn.innerText = originalBtnText;
+            loginBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

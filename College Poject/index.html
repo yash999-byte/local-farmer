@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Farmer Marketplace App</title>
+    
+    <!-- 🛡️ SECURITY GUARD SCRIPT -->
+    <script>
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.replace('login.html'); 
+        }
+    </script>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar hiding for horizontal scrolling elements */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* App Container to simulate mobile view on desktop */
+        .app-container {
+            max-width: 414px; /* iPhone Max width */
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-20">
+    
+    <!-- Header Section -->
+    <div class="px-5 pt-8 pb-4 bg-white">
+        <div class="flex justify-between items-center mb-4">
+            <div>
+                <!-- Dynamic Name & Subtitle -->
+                <h1 id="user-greeting" class="text-xl font-bold text-gray-800">Hello! 👋</h1>
+                <p id="user-subtitle" class="text-sm text-gray-500">What are you looking for today?</p>
+            </div>
+            <div class="relative">
+                <i class="fa-regular fa-bell text-xl text-gray-700"></i>
+                <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative">
+            <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
+            <input type="text" placeholder="Search for products..." class="w-full bg-gray-100 py-3 pl-12 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600">
+        </div>
+    </div>
+
+    <!-- 🛒 BUYER Promotional Banner (Visible by default) -->
+    <div id="buyer-banner" class="px-5 mt-2 block">
+        <div class="bg-green-700 rounded-2xl p-5 text-white flex justify-between items-center shadow-lg relative overflow-hidden">
+            <div class="z-10 w-2/3">
+                <h2 class="text-lg font-bold mb-1">Support Local Farmers</h2>
+                <p class="text-xs mb-3 text-green-100">Fresh Produce, Direct to You</p>
+                <!-- We removed the Add Product button from here! -->
+            </div>
+            <div class="absolute -right-4 -bottom-4 text-7xl opacity-90 z-0">
+                🧺
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚜 FARMER Dashboard Banner (Hidden by default) -->
+    <div id="farmer-banner" class="px-5 mt-2 hidden">
+        <div class="bg-amber-600 rounded-2xl p-5 text-white flex justify-between items-center shadow-lg relative overflow-hidden">
+            <div class="z-10 w-2/3">
+                <h2 class="text-lg font-bold mb-1">Manage Your Farm</h2>
+                <p class="text-xs mb-3 text-amber-100">List new items for your buyers</p>
+                <a href="add-product.html" class="inline-block bg-white text-amber-700 text-xs font-bold py-2 px-4 rounded-full shadow"><i class="fa-solid fa-plus mr-1"></i> Add Product</a>
+            </div>
+            <div class="absolute -right-4 -bottom-4 text-7xl opacity-90 z-0">
+                🚜
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="px-5 mt-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-gray-800">Categories</h3>
+            <a href="categories.html" class="text-sm text-green-600 font-semibold">See All</a>
+        </div>
+        <div class="flex justify-between">
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-3 rounded-xl shadow-sm mb-2 w-14 h-14 flex items-center justify-center text-2xl">🥬</div>
+                <span class="text-xs text-gray-600 font-medium">Vegetables</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-3 rounded-xl shadow-sm mb-2 w-14 h-14 flex items-center justify-center text-2xl">🍎</div>
+                <span class="text-xs text-gray-600 font-medium">Fruits</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-3 rounded-xl shadow-sm mb-2 w-14 h-14 flex items-center justify-center text-2xl">🌾</div>
+                <span class="text-xs text-gray-600 font-medium">Grains</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-3 rounded-xl shadow-sm mb-2 w-14 h-14 flex items-center justify-center text-2xl">🥛</div>
+                <span class="text-xs text-gray-600 font-medium">Dairy</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popular Products Section -->
+    <div class="px-5 mt-6 mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-gray-800">Popular Products</h3>
+            <a href="categories.html" class="text-sm text-green-600 font-semibold">See All</a>
+        </div>
+        
+        <div id="live-products-grid" class="grid grid-cols-2 gap-4">
+            <!-- Products will load here dynamically! -->
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation Bar -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5">
+        <div class="flex flex-col items-center text-green-700">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </div>
+        <a href="categories.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-border-all mb-1"></i>
+            <span class="text-[10px] font-semibold">Categories</span>
+        </a>
+        
+        <!-- BUYER Cart Icon -->
+        <a href="cart.html" id="nav-cart-btn" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+        </a>
+        
+        <!-- FARMER Farm Icon (Hidden by default) -->
+        <a href="#" id="nav-farm-btn" class="hidden flex flex-col items-center text-gray-400 hover:text-amber-600 transition">
+            <i class="fa-solid fa-seedling mb-1"></i>
+            <span class="text-[10px] font-semibold">My Farm</span>
+        </a>
+
+        <a href="orders.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-regular fa-user mb-1"></i>
+            <span class="text-[10px] font-semibold">Profile</span>
+        </a>
+    </div>
+
+</div>
+
+<!-- Role-Based Access Control (RBAC) & Product Loading Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Get user data from local storage
+        const fullName = localStorage.getItem('localFarmerName') || 'User';
+        const role = localStorage.getItem('localFarmerRole') || 'buyer';
+
+        // 2. Extract first name and update greeting
+        const firstName = fullName.split(' ')[0];
+        document.getElementById('user-greeting').innerText = `Hello, ${firstName}! 👋`;
+
+        // 3. UI logic for Farmers
+        if (role === 'farmer') {
+            // Update subtitle
+            document.getElementById('user-subtitle').innerText = 'Ready to sell your fresh produce?';
+            
+            // Swap out the promotional banners
+            document.getElementById('buyer-banner').classList.add('hidden');
+            document.getElementById('buyer-banner').classList.remove('block');
+            document.getElementById('farmer-banner').classList.remove('hidden');
+            document.getElementById('farmer-banner').classList.add('block');
+
+            // Swap out Cart icon for 'My Farm' icon in the nav bar
+            document.getElementById('nav-cart-btn').classList.add('hidden');
+            document.getElementById('nav-cart-btn').classList.remove('flex');
+            
+            document.getElementById('nav-farm-btn').classList.remove('hidden');
+            document.getElementById('nav-farm-btn').classList.add('flex');
+        }
+
+        // 4. Load the products from the database!
+        loadLiveProducts();
+    });
+
+    // --- Fetch Live Products with Real Photos ---
+    async function loadLiveProducts() {
+        try {
+            const response = await fetch('https://local-farmer-backend-zpy6.onrender.com/api/products');
+            const data = await response.json();
+
+            if (data.success && data.products.length > 0) {
+                const grid = document.getElementById('live-products-grid');
+                grid.innerHTML = ''; // Clears out the fake hardcoded Tomato/Potato
+
+                data.products.forEach(product => {
+                    // 1. Fallback Emoji Logic
+                    let emoji = '📦';
+                    if (product.category === 'vegetables') emoji = '🥬';
+                    if (product.category === 'fruits') emoji = '🍎';
+                    if (product.category === 'grains') emoji = '🌾';
+                    if (product.category === 'dairy') emoji = '🥛';
+
+                    // 2. Decide what to show: Real Photo OR Emoji
+                    let visualContent = `<div class="text-center text-5xl py-4">${emoji}</div>`;
+                    
+                    // If a Firebase image link exists, replace the emoji with an image tag!
+                    if (product.imageUrl) {
+                        visualContent = `<img src="${product.imageUrl}" alt="${product.name}" class="w-full h-32 object-cover rounded-xl mb-2 shadow-sm" />`;
+                    }
+
+                    // 3. Build the HTML card
+                    const productCard = `
+                        <a href="#" class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 block hover:shadow-md transition cursor-pointer">
+                            ${visualContent}
+                            <h4 class="font-bold text-gray-800 text-sm truncate">${product.name}</h4>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="font-bold text-green-700">₹${product.price} <span class="text-xs text-gray-400 font-normal">/ ${product.unit}</span></span>
+                                <button class="bg-green-100 text-green-700 w-7 h-7 rounded-full flex items-center justify-center"><i class="fa-solid fa-plus text-xs"></i></button>
+                            </div>
+                        </a>
+                    `;
+                    grid.innerHTML += productCard;
+                });
+            }
+        } catch (error) {
+            console.error('Could not load products:', error);
+        }
+    }
+</script>
+
+</body>
+</html>

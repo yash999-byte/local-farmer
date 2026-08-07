@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Address - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        /* Custom styling for active address tag buttons */
+        .tag-radio:checked + div {
+            background-color: #15803d; /* green-700 */
+            color: #ffffff;
+            border-color: #15803d;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-28">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center justify-between bg-white sticky top-0 z-10 shadow-sm">
+        <div class="flex items-center">
+            <a href="addresses.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800 -ml-2">
+                <i class="fa-solid fa-arrow-left text-lg"></i>
+            </a>
+            <h1 class="text-lg font-bold text-gray-800 ml-2">Edit Address</h1>
+        </div>
+        <button class="text-red-500 hover:text-red-700 text-sm font-semibold transition">
+            <i class="fa-solid fa-trash-can mr-1"></i> Delete
+        </button>
+    </div>
+
+    <!-- Edit Address Form -->
+    <form class="px-5 mt-5 space-y-4" onsubmit="event.preventDefault(); window.location.href='addresses.html';">
+        
+        <!-- Contact Information -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Contact Details</h2>
+            
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
+                <input type="text" value="Rohan Kumar" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" value="+91 98765 43210" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+            </div>
+        </div>
+
+        <!-- Address Information -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 space-y-3">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Address Details</h2>
+
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">House No., Building, Apartment</label>
+                <input type="text" value="A-402, Green Valley Apartments" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Area, Street, Sector, Village</label>
+                <input type="text" value="Shivaji Nagar" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Town / City</label>
+                    <input type="text" value="Pune" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">PIN Code</label>
+                    <input type="text" value="411005" required class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">State</label>
+                <select class="w-full bg-gray-50 border border-gray-200 py-2.5 px-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition">
+                    <option selected>Maharashtra</option>
+                    <option>Gujarat</option>
+                    <option>Karnataka</option>
+                    <option>Delhi</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Save As / Address Type -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Save Address As</h2>
+            
+            <div class="grid grid-cols-3 gap-2">
+                <label class="cursor-pointer">
+                    <input type="radio" name="address_tag" class="tag-radio absolute opacity-0 w-0 h-0" checked>
+                    <div class="border border-gray-200 text-gray-700 rounded-xl py-2 text-center text-xs font-bold transition">
+                        <i class="fa-solid fa-house mr-1"></i> Home
+                    </div>
+                </label>
+                <label class="cursor-pointer">
+                    <input type="radio" name="address_tag" class="tag-radio absolute opacity-0 w-0 h-0">
+                    <div class="border border-gray-200 text-gray-700 rounded-xl py-2 text-center text-xs font-bold transition">
+                        <i class="fa-solid fa-briefcase mr-1"></i> Work
+                    </div>
+                </label>
+                <label class="cursor-pointer">
+                    <input type="radio" name="address_tag" class="tag-radio absolute opacity-0 w-0 h-0">
+                    <div class="border border-gray-200 text-gray-700 rounded-xl py-2 text-center text-xs font-bold transition">
+                        <i class="fa-solid fa-location-dot mr-1"></i> Other
+                    </div>
+                </label>
+            </div>
+
+            <!-- Default Address Toggle -->
+            <div class="flex items-center justify-between border-t border-gray-100 mt-4 pt-3">
+                <div>
+                    <p class="text-sm font-semibold text-gray-800">Make Default Address</p>
+                    <p class="text-xs text-gray-400">Use this address for all future checkouts</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-700"></div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Fixed Save Button -->
+        <div class="fixed bottom-0 w-full max-w-[414px] bg-white px-5 py-4 border-t border-gray-100 left-1/2 transform -translate-x-1/2">
+            <button type="submit" class="w-full bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-md hover:bg-green-800 transition">
+                Save Address
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

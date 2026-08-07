@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Local Farmer App</title>
+    
+    <script>
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.replace('login.html');
+        } else if (localStorage.getItem('localFarmerRole') !== 'farmer') {
+            alert("Access Denied: Only farmers can add products.");
+            window.location.replace('index.html');
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24 flex flex-col h-screen">
+    
+    <!-- Header -->
+    <div class="bg-white px-5 py-4 flex items-center shadow-sm sticky top-0 z-10">
+        <a href="index.html" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800 ml-4">List New Produce (Pro)</h1>
+    </div>
+
+    <!-- Add Product Form -->
+    <div class="px-5 mt-6 flex-grow overflow-y-auto no-scrollbar">
+        
+        <form id="add-product-form" class="space-y-4">
+            
+            <!-- Product Name -->
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Product Name</label>
+                <div class="relative">
+                    <i class="fa-solid fa-leaf absolute left-4 top-[14px] text-gray-400"></i>
+                    <input type="text" id="prod-name" placeholder="e.g., Fresh Organic Tomatoes" required class="w-full bg-white border border-gray-200 py-3 pl-11 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 transition">
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Category</label>
+                <div class="relative">
+                    <i class="fa-solid fa-layer-group absolute left-4 top-[14px] text-gray-400"></i>
+                    <select id="prod-category" required class="w-full bg-white border border-gray-200 py-3 pl-11 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 transition appearance-none text-gray-700">
+                        <option value="" disabled selected>Select a category...</option>
+                        <option value="vegetables">🥬 Vegetables</option>
+                        <option value="fruits">🍎 Fruits</option>
+                        <option value="grains">🌾 Grains</option>
+                        <option value="dairy">🥛 Dairy & Eggs</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute right-4 top-[14px] text-gray-400 text-xs pointer-events-none"></i>
+                </div>
+            </div>
+
+            <!-- Price & Unit -->
+            <div class="flex space-x-3">
+                <div class="flex-1">
+                    <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Price (₹)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-indian-rupee-sign absolute left-4 top-[14px] text-gray-400"></i>
+                        <input type="number" id="prod-price" placeholder="0.00" required class="w-full bg-white border border-gray-200 py-3 pl-10 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 transition">
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Per Unit</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-scale-balanced absolute left-4 top-[14px] text-gray-400"></i>
+                        <select id="prod-unit" class="w-full bg-white border border-gray-200 py-3 pl-10 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 transition appearance-none text-gray-700">
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="gram">Gram (g)</option>
+                            <option value="dozen">Dozen</option>
+                            <option value="piece">Piece</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-4 top-[14px] text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multiple Photos Picker -->
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Upload Product Photos (Select up to 5)</label>
+                <input type="file" id="photos-input" accept="image/*" multiple class="w-full bg-white border border-gray-200 p-3 rounded-xl text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 cursor-pointer">
+            </div>
+
+            <!-- Short Video Picker -->
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Upload Short Video (Optional)</label>
+                <input type="file" id="video-input" accept="video/*" class="w-full bg-white border border-gray-200 p-3 rounded-xl text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 cursor-pointer">
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1 ml-1">Description</label>
+                <textarea id="prod-desc" rows="3" placeholder="Describe your product..." class="w-full bg-white border border-gray-200 py-3 px-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 transition resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="block text-center w-full bg-amber-600 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg hover:bg-amber-700 transition mt-6 mb-8">
+                Publish Pro Listing
+            </button>
+            
+        </form>
+    </div>
+</div>
+
+<!-- 🔥 FIREBASE MULTI-UPLOAD SCRIPT -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCcz0bDqiVJ84-nlgJ0xRPJ8DtfvJXdaUE",
+        authDomain: "local-farmer-app-cb162.firebaseapp.com",
+        databaseURL: "https://local-farmer-app-cb162-default-rtdb.firebaseio.com",
+        projectId: "local-farmer-app-cb162",
+        storageBucket: "local-farmer-app-cb162.firebasestorage.app",
+        messagingSenderId: "258240177778",
+        appId: "1:258240177778:web:482861b45e5f1402ea84eb",
+        measurementId: "G-TGQ6NHYLRD"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    document.getElementById('add-product-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+
+        try {
+            // 1. Upload Multiple Photos
+            submitBtn.innerText = 'Uploading Photos...';
+            const photoFiles = document.getElementById('photos-input').files;
+            let imageUrls = [];
+
+            for (let i = 0; i < photoFiles.length; i++) {
+                const file = photoFiles[i];
+                const fileName = Date.now() + '_' + i + '_' + file.name;
+                const storageRef = ref(storage, 'products/' + fileName);
+                const snapshot = await uploadBytes(storageRef, file);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+                imageUrls.push(downloadURL);
+            }
+
+            // 2. Upload Video (if selected)
+            let videoUrl = "";
+            const videoFile = document.getElementById('video-input').files[0];
+            if (videoFile) {
+                submitBtn.innerText = 'Uploading Video...';
+                const videoName = Date.now() + '_vid_' + videoFile.name;
+                const videoRef = ref(storage, 'videos/' + videoName);
+                const videoSnapshot = await uploadBytes(videoRef, videoFile);
+                videoUrl = await getDownloadURL(videoSnapshot.ref);
+            }
+
+            // 3. Save Data to MongoDB
+            submitBtn.innerText = 'Saving to Database...';
+            const productData = {
+                name: document.getElementById('prod-name').value,
+                category: document.getElementById('prod-category').value,
+                price: document.getElementById('prod-price').value,
+                unit: document.getElementById('prod-unit').value,
+                description: document.getElementById('prod-desc').value,
+                farmerPhone: localStorage.getItem('localFarmerPhone'),
+                images: imageUrls,
+                videoUrl: videoUrl
+            };
+
+            const response = await fetch('https://local-farmer-backend-zpy6.onrender.com/api/products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(productData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                alert('Success! Pro product listed with photos and video.');
+                window.location.href = 'index.html';
+            } else {
+                alert('Database Error: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Something went wrong during upload.');
+        } finally {
+            submitBtn.innerText = 'Publish Pro Listing';
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center bg-white sticky top-0 z-10 shadow-sm">
+        <h1 class="text-xl font-bold text-gray-800">All Categories</h1>
+    </div>
+
+    <!-- Search Bar (Specific to searching within categories) -->
+    <div class="px-5 mt-4">
+        <div class="relative">
+            <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
+            <input type="text" placeholder="Find a category..." class="w-full bg-white border border-gray-200 py-3 pl-12 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 shadow-sm">
+        </div>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="px-5 mt-6 mb-6 grid grid-cols-2 gap-4">
+        
+        <!-- Category: Vegetables -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-3xl mb-3">🥬</div>
+            <h3 class="font-bold text-gray-800 text-sm">Vegetables</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">124 Items</p>
+        </a>
+
+        <!-- Category: Fruits -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center text-3xl mb-3">🍎</div>
+            <h3 class="font-bold text-gray-800 text-sm">Fruits</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">85 Items</p>
+        </a>
+
+        <!-- Category: Grains -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center text-3xl mb-3">🌾</div>
+            <h3 class="font-bold text-gray-800 text-sm">Grains</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">42 Items</p>
+        </a>
+
+        <!-- Category: Dairy -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center text-3xl mb-3">🥛</div>
+            <h3 class="font-bold text-gray-800 text-sm">Dairy</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">28 Items</p>
+        </a>
+
+        <!-- Category: Spices -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center text-3xl mb-3">🌶️</div>
+            <h3 class="font-bold text-gray-800 text-sm">Spices</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">56 Items</p>
+        </a>
+
+        <!-- Category: Herbs -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-3xl mb-3">🌿</div>
+            <h3 class="font-bold text-gray-800 text-sm">Fresh Herbs</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">18 Items</p>
+        </a>
+
+        <!-- Category: Nuts -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center text-3xl mb-3">🥜</div>
+            <h3 class="font-bold text-gray-800 text-sm">Nuts & Seeds</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">34 Items</p>
+        </a>
+
+        <!-- Category: Organic -->
+        <a href="#" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center hover:shadow-md transition hover:border-green-200">
+            <div class="w-16 h-16 bg-lime-50 rounded-full flex items-center justify-center text-3xl mb-3">🌱</div>
+            <h3 class="font-bold text-gray-800 text-sm">100% Organic</h3>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium">95 Items</p>
+        </a>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Categories Active) -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5 z-20">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+        <!-- Active Tab -->
+        <div class="flex flex-col items-center text-green-700">
+            <i class="fa-solid fa-border-all mb-1"></i>
+            <span class="text-[10px] font-semibold">Categories</span>
+        </div>
+        <a href="cart.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </a>
+        <a href="orders.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-regular fa-user mb-1"></i>
+            <span class="text-[10px] font-semibold">Profile</span>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

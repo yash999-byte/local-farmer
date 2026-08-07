@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipped Orders - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        /* Adding a pulse animation for the active shipping dot */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 2s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center bg-white sticky top-0 z-10 shadow-sm">
+        <a href="index.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800 -ml-2">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800 ml-2">My Orders</h1>
+    </div>
+
+    <!-- Order Tabs (Shipped is Active) -->
+    <div class="bg-white px-5 border-b border-gray-200 flex justify-between items-center w-full pt-2">
+        <a href="orders.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">All</span>
+        </a>
+        <a href="orders-processing.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">Processing</span>
+        </a>
+        <!-- Active Tab -->
+        <a href="orders-shipped.html" class="pb-3 border-b-2 border-green-700 block">
+            <span class="text-sm font-bold text-green-700">Shipped</span>
+        </a>
+        <!-- Links to Delivered -->
+        <a href="orders-delivered.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">Delivered</span>
+        </a>
+    </div>
+
+    <!-- Orders List (Filtered to Shipped Only) -->
+    <div class="px-5 mt-4 space-y-4">
+        
+        <!-- Order Card (Shipped with Tracking UI) -->
+        <div class="bg-white rounded-3xl p-5 shadow-md border border-gray-100 relative overflow-hidden">
+            <!-- Decorative background accent -->
+            <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full z-0 opacity-50"></div>
+            
+            <div class="relative z-10 flex justify-between items-start border-b border-gray-100 pb-4 mb-4">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm">Order ID: #ORD1003</h3>
+                    <p class="text-xs text-gray-500 mt-1">Placed on: 15 May 2024</p>
+                </div>
+                <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-3 py-1.5 rounded-lg flex items-center shadow-sm">
+                    <i class="fa-solid fa-truck-fast mr-1.5"></i> Shipped
+                </span>
+            </div>
+            
+            <!-- Items Summary -->
+            <div class="relative z-10 flex justify-between items-center mb-6">
+                <div class="flex space-x-3">
+                    <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-2xl border border-gray-100 shadow-sm">🧅</div>
+                    <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-2xl border border-gray-100 shadow-sm">🥔</div>
+                </div>
+                <div class="text-right bg-gray-50 py-1.5 px-3 rounded-lg border border-gray-100">
+                    <p class="text-[11px] text-gray-500 font-medium">4 Items</p>
+                    <p class="font-bold text-gray-800 text-sm mt-0.5">Total: <span class="text-green-700">₹120</span></p>
+                </div>
+            </div>
+
+            <!-- Attractive Feature: Order Tracking Timeline -->
+            <div class="relative z-10 bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                <p class="text-xs font-bold text-gray-800 mb-4">Expected Delivery: <span class="text-green-700">Today, 4:00 PM</span></p>
+                
+                <div class="relative flex items-center justify-between w-full mb-2">
+                    <!-- Progress Line Background -->
+                    <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-1 bg-gray-200 rounded-full"></div>
+                    <!-- Progress Line Active (Fills to the second step) -->
+                    <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 h-1 bg-green-500 rounded-full"></div>
+                    
+                    <!-- Step 1: Processing (Completed) -->
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white shadow-md">
+                            <i class="fa-solid fa-check text-[10px]"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Shipped (Active - with pulse animation) -->
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white shadow-md animate-pulse-ring">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Delivered (Pending) -->
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-full flex items-center justify-center">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline Labels -->
+                <div class="flex justify-between text-[10px] font-semibold mt-2">
+                    <span class="text-green-700">Packed</span>
+                    <span class="text-green-700 text-center ml-2">On the way</span>
+                    <span class="text-gray-400">Delivered</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5 z-20">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-border-all mb-1"></i>
+            <span class="text-[10px] font-semibold">Categories</span>
+        </div>
+        <a href="cart.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </a>
+        <a href="orders.html" class="flex flex-col items-center text-green-700">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-regular fa-user mb-1"></i>
+            <span class="text-[10px] font-semibold">Profile</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

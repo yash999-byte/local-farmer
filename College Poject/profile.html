@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Local Farmer App</title>
+    
+    <!-- 🛡️ SECURITY GUARD SCRIPT -->
+    <script>
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.replace('login.html'); // Instantly redirects unauthenticated users
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24">
+    
+    <!-- Profile Header (Green Section) -->
+    <div class="bg-green-700 px-5 pt-12 pb-8 rounded-b-[2rem] shadow-md">
+        <div class="flex items-center">
+            <!-- Profile Avatar -->
+            <div class="w-20 h-20 bg-white rounded-full p-1 shadow-lg relative">
+                <!-- Added ID to make the image dynamic -->
+                <img id="profile-avatar" src="https://ui-avatars.com/api/?name=User&background=e2e8f0&color=166534&size=100" alt="Profile" class="w-full h-full rounded-full object-cover">
+                <!-- Edit badge -->
+                <div class="absolute bottom-0 right-0 bg-white w-6 h-6 rounded-full flex items-center justify-center shadow text-green-700">
+                    <i class="fa-solid fa-pen text-[10px]"></i>
+                </div>
+            </div>
+            
+            <!-- User Info (Added IDs to pull data from memory) -->
+            <div class="ml-5 text-white">
+                <h1 id="profile-name" class="text-xl font-bold">Loading...</h1>
+                <!-- Swapped Email for Account Role -->
+                <p class="text-green-100 text-sm mt-0.5 capitalize"><i class="fa-solid fa-id-badge mr-1.5"></i><span id="profile-role">Loading...</span></p>
+                <p class="text-green-100 text-sm mt-0.5"><i class="fa-solid fa-phone mr-1.5"></i><span id="profile-phone">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Options List -->
+    <div class="px-5 mt-6 space-y-3">
+        
+        <!-- My Addresses -->
+        <a href="addresses.html" class="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-700">
+                    <i class="fa-solid fa-location-dot text-lg"></i>
+                </div>
+                <span class="font-bold text-gray-800 text-sm ml-4">My Addresses</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+        </a>
+       <!-- Payment Methods -->
+        <a href="payment-methods.html" class="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-700">
+                    <i class="fa-regular fa-credit-card text-lg"></i>
+                </div>
+                <span class="font-bold text-gray-800 text-sm ml-4">Payment Methods</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+        </a>
+
+        <!-- My Orders -->
+        <a href="orders.html" class="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-700">
+                    <i class="fa-solid fa-box text-lg"></i>
+                </div>
+                <span class="font-bold text-gray-800 text-sm ml-4">My Orders</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+        </a>
+
+        <!-- Settings -->
+        <a href="#" class="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-700">
+                    <i class="fa-solid fa-gear text-lg"></i>
+                </div>
+                <span class="font-bold text-gray-800 text-sm ml-4">Settings</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+        </a>
+
+        <!-- Help & Support -->
+        <a href="#" class="bg-white rounded-2xl p-4 flex items-center justify-between shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-700">
+                    <i class="fa-regular fa-circle-question text-lg"></i>
+                </div>
+                <span class="font-bold text-gray-800 text-sm ml-4">Help & Support</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-gray-400 text-sm"></i>
+        </a>
+
+       <!-- Logout (Added id="logout-btn" and changed href to #) -->
+        <a href="#" id="logout-btn" class="bg-red-50 rounded-2xl p-4 flex items-center justify-between shadow-sm border border-red-100 hover:bg-red-100 transition mt-6 cursor-pointer">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
+                    <i class="fa-solid fa-arrow-right-from-bracket text-lg"></i>
+                </div>
+                <span class="font-bold text-red-600 text-sm ml-4">Logout</span>
+            </div>
+            <i class="fa-solid fa-chevron-right text-red-300 text-sm"></i>
+        </a>
+    </div>
+
+    <!-- Bottom Navigation Bar (Profile Active) -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5 z-20">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+       <a href="categories.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-border-all mb-1"></i>
+            <span class="text-[10px] font-semibold">Categories</span>
+        </a>
+        <a href="cart.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </a>
+        <a href="orders.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </a>
+        <!-- Active Tab -->
+        <div class="flex flex-col items-center text-green-700">
+            <i class="fa-solid fa-user mb-1"></i>
+            <span class="text-[10px] font-semibold">Profile</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Data Population and Logout Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Grab data from localStorage
+        const name = localStorage.getItem('localFarmerName') || 'Unknown User';
+        const phone = localStorage.getItem('localFarmerPhone') || 'No Phone';
+        const role = localStorage.getItem('localFarmerRole') || 'buyer';
+
+        // Update the HTML text with the logged-in user's info
+        document.getElementById('profile-name').innerText = name;
+        document.getElementById('profile-phone').innerText = phone;
+        document.getElementById('profile-role').innerText = role + ' Account';
+
+        // Dynamically update the avatar image to use the user's initials
+        const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=e2e8f0&color=166534&size=100`;
+        document.getElementById('profile-avatar').src = avatarUrl;
+    });
+
+    // Handle Logout safely
+    document.getElementById('logout-btn').addEventListener('click', (event) => {
+        event.preventDefault(); // Stops the link from just refreshing the page
+        
+        if(confirm("Are you sure you want to log out?")) {
+            // Delete security tokens
+            localStorage.clear();
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }
+    });
+</script>
+
+</body>
+</html>

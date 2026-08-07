@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        /* Hide scrollbar for the item preview list */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container pb-24">
+    
+    <!-- Header -->
+    <div class="px-5 py-4 flex items-center bg-white sticky top-0 z-10">
+        <a href="index.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition text-gray-800 -ml-2">
+            <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-lg font-bold text-gray-800 ml-2">My Orders</h1>
+    </div>
+
+    <!-- Order Tabs -->
+    <div class="bg-white px-5 border-b border-gray-200 flex justify-between items-center w-full pt-2">
+        <!-- "All" is active on this page -->
+        <a href="orders.html" class="pb-3 border-b-2 border-green-700 block">
+            <span class="text-sm font-bold text-green-700">All</span>
+        </a>
+        <!-- Links to Processing -->
+        <a href="orders-processing.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">Processing</span>
+        </a>
+        <!-- Links to Shipped -->
+        <a href="orders-shipped.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">Shipped</span>
+        </a>
+        <!-- Delivered placeholder -->
+        <!-- Links to Delivered -->
+        <a href="orders-delivered.html" class="pb-3 block">
+            <span class="text-sm font-medium text-gray-500 hover:text-gray-800 transition">Delivered</span>
+        </a>
+    </div>
+
+    <!-- Orders List -->
+    <div class="px-5 mt-4 space-y-4">
+        
+        <!-- Order Card 1 (Delivered) -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start border-b border-gray-100 pb-3 mb-3">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm">Order ID: #ORD1001</h3>
+                    <p class="text-xs text-gray-500 mt-1">Date: 20 May 2024</p>
+                </div>
+                <span class="bg-green-50 text-green-700 text-[10px] font-bold px-2.5 py-1 rounded-md">Delivered</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-2">
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🍅</div>
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🥬</div>
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🍌</div>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-gray-500">3 Items</p>
+                    <p class="font-bold text-gray-800 text-sm mt-0.5">Total: <span class="text-green-700">₹81</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Card 2 (Processing) -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start border-b border-gray-100 pb-3 mb-3">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm">Order ID: #ORD1002</h3>
+                    <p class="text-xs text-gray-500 mt-1">Date: 18 May 2024</p>
+                </div>
+                <span class="bg-orange-50 text-orange-600 text-[10px] font-bold px-2.5 py-1 rounded-md">Processing</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-2">
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🍅</div>
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🥕</div>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-gray-500">2 Items</p>
+                    <p class="font-bold text-gray-800 text-sm mt-0.5">Total: <span class="text-green-700">₹60</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Card 3 (Shipped) -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+            <div class="flex justify-between items-start border-b border-gray-100 pb-3 mb-3">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm">Order ID: #ORD1003</h3>
+                    <p class="text-xs text-gray-500 mt-1">Date: 15 May 2024</p>
+                </div>
+                <span class="bg-orange-50 text-orange-600 text-[10px] font-bold px-2.5 py-1 rounded-md">Shipped</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-2">
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🧅</div>
+                    <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl border border-gray-100">🥔</div>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-gray-500">4 Items</p>
+                    <p class="font-bold text-gray-800 text-sm mt-0.5">Total: <span class="text-green-700">₹120</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Orders Tab Active) -->
+    <div class="fixed bottom-0 w-full max-w-[414px] bg-white border-t border-gray-200 flex justify-between px-6 py-3 pb-5 z-20">
+        <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+            <i class="fa-solid fa-house mb-1"></i>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+        <a href="categories.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+    <i class="fa-solid fa-border-all mb-1"></i>
+    <span class="text-[10px] font-semibold">Categories</span>
+</a>
+        <a href="cart.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition relative">
+            <i class="fa-solid fa-cart-shopping mb-1"></i>
+            <span class="text-[10px] font-semibold">Cart</span>
+            <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </a>
+        <!-- Active Tab -->
+        <div class="flex flex-col items-center text-green-700">
+            <i class="fa-solid fa-clipboard-list mb-1"></i>
+            <span class="text-[10px] font-semibold">Orders</span>
+        </div>
+        <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-green-700 transition">
+    <i class="fa-regular fa-user mb-1"></i>
+    <span class="text-[10px] font-semibold">Profile</span>
+</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

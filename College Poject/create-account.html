@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Local Farmer App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .app-container {
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header-curve {
+            border-bottom-left-radius: 40%;
+            border-bottom-right-radius: 40%;
+        }
+        /* Custom radio button styling for role selection */
+        .role-radio:checked + div {
+            border-color: #15803d;
+            background-color: #f0fdf4;
+            color: #15803d;
+        }
+        .role-radio:checked + div i {
+            color: #15803d;
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+<div class="app-container flex flex-col">
+    
+    <!-- Top Illustration Area -->
+    <div class="bg-green-700 h-48 header-curve flex flex-col items-center justify-end pb-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20" style="background-image: radial-gradient(circle, white 2px, transparent 2px); background-size: 20px 20px;"></div>
+        <div class="relative z-10 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-green-600">
+            <span class="text-4xl">🚜</span>
+        </div>
+    </div>
+
+    <!-- Sign Up Form Area -->
+    <div class="px-6 mt-6 flex-grow">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-1">Create Account</h1>
+            <p class="text-sm text-gray-500">Sign up to get started</p>
+        </div>
+
+        <!-- Added ID to form -->
+        <form id="signup-form" class="space-y-4">
+            
+            <!-- Full Name -->
+            <div class="relative">
+                <i class="fa-regular fa-user absolute left-4 top-[14px] text-gray-400"></i>
+                <!-- Added id="signup-name" -->
+                <input type="text" id="signup-name" placeholder="Full Name" required class="w-full bg-gray-50 border border-gray-200 py-3 pl-11 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition text-gray-800 font-medium">
+            </div>
+
+            <!-- Phone Number -->
+            <div class="relative">
+                <i class="fa-solid fa-phone absolute left-4 top-[14px] text-gray-400"></i>
+                <!-- Added id="signup-phone" -->
+                <input type="tel" 
+                       id="signup-phone"
+                       placeholder="Phone Number" 
+                       maxlength="10" 
+                       required
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                       class="w-full bg-gray-50 border border-gray-200 py-3 pl-11 pr-4 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition text-gray-800 font-medium">
+            </div>
+
+            <!-- Create Password -->
+            <div class="relative">
+                <i class="fa-solid fa-lock absolute left-4 top-[14px] text-gray-400"></i>
+                <!-- Added id="signup-password" -->
+                <input type="password" id="signup-password" placeholder="Create Password" required minlength="8" class="w-full bg-gray-50 border border-gray-200 py-3 pl-11 pr-10 rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-600 focus:bg-white transition text-gray-800 font-medium">
+                <button type="button" class="absolute right-4 top-[14px] text-gray-400 hover:text-green-700 transition">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </button>
+            </div>
+            <p class="text-[10px] text-gray-400 ml-2">Must be at least 8 characters.</p>
+
+            <!-- Role Selector -->
+            <div class="pt-2 pb-2">
+                <p class="text-xs font-bold text-gray-800 mb-3">Select Role</p>
+                <div class="flex space-x-3">
+                    <label class="cursor-pointer flex-1">
+                        <input type="radio" name="account_role" value="buyer" class="role-radio absolute opacity-0 w-0 h-0" checked>
+                        <div class="border border-gray-200 bg-gray-50 text-gray-500 py-2.5 rounded-lg flex items-center justify-center transition-all text-xs font-bold">
+                            <i class="fa-solid fa-basket-shopping mr-1.5"></i> Buyer
+                        </div>
+                    </label>
+                    <label class="cursor-pointer flex-1">
+                        <input type="radio" name="account_role" value="farmer" class="role-radio absolute opacity-0 w-0 h-0">
+                        <div class="border border-gray-200 bg-gray-50 text-gray-500 py-2.5 rounded-lg flex items-center justify-center transition-all text-xs font-bold">
+                            <i class="fa-solid fa-tractor mr-1.5"></i> Farmer
+                        </div>
+                    </label>
+                    <label class="cursor-pointer flex-1">
+                        <input type="radio" name="account_role" value="admin" class="role-radio absolute opacity-0 w-0 h-0">
+                        <div class="border border-gray-200 bg-gray-50 text-gray-500 py-2.5 rounded-lg flex items-center justify-center transition-all text-xs font-bold">
+                            <i class="fa-solid fa-shield-halved mr-1.5"></i> Admin
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Changed from <a> tag to <button type="submit"> -->
+            <button type="submit" id="submit-btn" class="block text-center w-full bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl shadow-lg hover:bg-green-800 transition mt-6">
+                Sign Up
+            </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="text-center pb-8 mt-6">
+            <p class="text-xs text-gray-500 font-medium">Already have an account? <a href="login.html" class="text-green-700 font-bold hover:underline">Login</a></p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Backend Connection Script -->
+<script>
+    document.getElementById('signup-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevents the page from just refreshing
+        
+        // Your live Render Backend URL
+        const BACKEND_URL = 'https://local-farmer-backend-zpy6.onrender.com';
+
+        // Get the values the user typed in using the IDs we just added
+        const name = document.getElementById('signup-name').value;
+        const phone = document.getElementById('signup-phone').value;
+        const password = document.getElementById('signup-password').value;
+        const role = document.querySelector('input[name="account_role"]:checked').value;
+
+        // Change button text so the user knows it is loading
+        const submitBtn = document.getElementById('submit-btn');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Creating Account...';
+        submitBtn.disabled = true;
+
+        try {
+            // Send the data to your live Render server
+            const response = await fetch(`${BACKEND_URL}/api/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, password, role })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                alert('Success! Account created and saved in the cloud!');
+                
+                // Save info locally so the rest of the app knows who is logged in
+                localStorage.setItem('localFarmerName', name);
+                localStorage.setItem('localFarmerPhone', phone);
+                localStorage.setItem('localFarmerRole', role);
+                
+                // Now redirect them to the login page (or profile)
+                window.location.href = 'login.html';
+            } else {
+                // If they enter a phone number that is already registered
+                alert('Registration failed: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Could not connect to the server. Please wait a moment and try again.');
+        } finally {
+            // Reset button
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
